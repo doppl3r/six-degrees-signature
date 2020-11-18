@@ -3,15 +3,15 @@
         <meta name="robots" content="noindex">
         <style>
             body { margin: 0; padding: 0; margin: auto; height: auto; font-family: Calibri, sans-serif, serif; }
-            form { padding: 0px 6px; margin: 24px 0 0; }
-            form input, form button { background-color: #f1f1f1; border-radius: 999px; border: none; color: #6C7272; width: calc(50% - 8px); margin: 0 3px 12px; padding: 12px 24px; outline: none; }
+            form { padding: 0px 6px; margin: 24px 0 0; display: flex; flex-wrap: wrap; }
+            form input, form button { background-color: #f1f1f1; border-radius: 999px; border: none; color: #6C7272; width: calc(50% - 12px); margin: 0 6px 12px; padding: 12px 24px; outline: none; }
             form button { cursor: pointer; font-weight: bold; position: relative; outline: none; font-size: 14px; }
             form button:hover { background-color: #ededed; }
             form button[name="copy"] { background-color: #3f88c5; color: #ffffff; }
             form button[name="copy"]:focus { font-size: 0px; opacity: 0.75; }
             form button[name="copy"]:focus:after { content: 'Copied!'; font-size: 14px; }
-            form .note { font-size: 14px; background-color: #ffefca; padding: 12px; margin: 24px 6px 0; border-radius: 4px;  text-align: center; }
-            form .note span { text-decoration: underline; }
+            form .note { font-size: 14px; background-color: #ffefca; padding: 12px; margin: 24px 6px 0; border-radius: 4px;  text-align: center; width: 100%; }
+            form .note span { text-decoration: underline; font-weight: bold; }
         </style>
     </head>
     <body>
@@ -30,12 +30,12 @@
                     </td>
                     <td style="padding: 0px 0px 12px 0px; margin: 0px; display: inline-block;">
                         <table style="border-collapse: collapse;">
-                            <tr><td id="name" style="color: #333438; font-size: 16px; font-weight: bold; line-height: 16px; margin: 0; white-space: nowrap;"></td></tr>
-                            <tr><td id="title" style="color: #333438; font-size: 13px; font-weight: bold; line-height: 13px; padding-bottom: 12px; white-space: nowrap;"></td></tr>
-                            <tr><td style="color: #606164; font-size: 13px; line-height: 14px; white-space: nowrap;" id="phone"></td></tr>
-                            <tr><td style="color: #606164; font-size: 13px; line-height: 14px; white-space: nowrap;"><a id="email" style="color: #6C7272; text-decoration-color: transparent;"></a></td></tr>
-                            <tr><td style="color: #606164; font-size: 13px; line-height: 14px; white-space: nowrap;"><a href="https://www.google.com/maps/search/?api=1&query=8040 E. Gelding Drive, Scottsdale, AZ 85260" style="color: #6C7272; text-decoration-color: transparent;">8040 E. Gelding Drive, Scottsdale, AZ 85260</a></td></tr>
-                            <tr><td style="color: #606164; font-size: 13px; line-height: 14px; white-space: nowrap;"><a href="https://www.six-degrees.com" style="color: #6C7272; text-decoration-color: transparent;">www.six-degrees.com</a></td></tr>
+                            <tr><td id="name" height="16px" style="color: #333438; font-size: 16px; font-weight: bold; line-height: 16px; margin: 0; white-space: nowrap;"></td></tr>
+                            <tr><td id="title" height="13px" style="color: #333438; font-size: 13px; font-weight: bold; line-height: 13px; padding-bottom: 12px; white-space: nowrap;"></td></tr>
+                            <tr><td height="14px" style="color: #606164; font-size: 13px; line-height: 14px; white-space: nowrap;" id="phone"></td></tr>
+                            <tr><td height="14px" style="color: #606164; font-size: 13px; line-height: 14px; white-space: nowrap;"><a id="email" style="color: #6C7272; text-decoration-color: transparent;"></a></td></tr>
+                            <tr><td height="14px" style="color: #606164; font-size: 13px; line-height: 14px; white-space: nowrap;"><a id="address" style="color: #6C7272; text-decoration-color: transparent;">8040 E. Gelding Drive, Scottsdale, AZ 85260</a></td></tr>
+                            <tr><td height="14px" style="color: #606164; font-size: 13px; line-height: 14px; white-space: nowrap;"><a id="website" style="color: #6C7272; text-decoration-color: transparent;">www.six-degrees.com</a></td></tr>
                         </table>
                     </td>
                 </tr>
@@ -47,11 +47,13 @@
             <input name="phone-one" type="text" value="W 480-627-9850">
             <input name="phone-two" type="text" value="M 480-555-5555">
             <input name="email" type="email" value="info@six-degrees.com">
+            <input name="address" type="hidden" value="8040 E. Gelding Drive, Scottsdale, AZ 85260">
+            <input name="website" type="hidden" value="www.six-degrees.com">
             <button name="copy">Copy Signature</button>
-            <div class="note"><strong>Note</strong>: Please <span><strong>remove underlined</strong></span> texts after pasting signature.</div>
+            <div class="note"><strong>Note</strong>: If the copy button does not work, please manually <span>select</span> and <span>copy</span> the signature above.</div>
         </form>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script>
+        <script type="text/javascript">
             $(document).ready(function(){
                 updateSignature();
             });
@@ -73,25 +75,42 @@
                 var phoneOne = $('[name="phone-one"]').val();
                 var phoneTwo = $('[name="phone-two"]').val();
                 var email = $('[name="email"]').val();
-                return { 'name': name, 'title': title, 'phone-one': phoneOne, 'phone-two': phoneTwo, 'email': email }
+                var address = $('[name="address"]').val();
+                var website = $('[name="website"]').val();
+                return { 'name': name, 'title': title, 'phone-one': phoneOne, 'phone-two': phoneTwo, 'email': email, 'address': address, 'website': website }
             }
 
             function updateSignature() {
+                var addLinks = false; // Default false
                 var form = getFormData();
+                var name = $('#name');
+                var title = $('#title');
                 var phone = $('#phone');
-                var phone_template = '<a href="link" style="color: #6C7272; text-decoration-color: transparent;">text</a>';
+                var email = $('#email');
+                var address = $('#address');
+                var website = $('#website');
+                var phone_template = '<a style="color: #6C7272; text-decoration-color: transparent;">text</a>';
                 var phone_one = $(phone_template);
                 var phone_two = $(phone_template);
-                $('#name').text(form['name']);
-                $('#title').text(form['title']);
-                $('#email').text(form['email']).attr({ 'href': 'mailto:' + form['email']});
+                name.text(form['name']);
+                title.text(form['title']);
+                email.text(form['email']);
 
                 // Format phone number into attributes
-                phone_one.text(form['phone-one']).attr({ 'href': 'tel:' + form['phone-one'].replace(/\D/g,'') });
-                phone_two.text(form['phone-two']).attr({ 'href': 'tel:' + form['phone-two'].replace(/\D/g,'') });
+                phone_one.text(form['phone-one']);
+                phone_two.text(form['phone-two']);
                 phone.empty();
                 phone.append(phone_one);
                 if (form['phone-two'].length > 0) phone.append(" | ", phone_two);
+
+                // Add links conditionally
+                if (addLinks == true) {
+                    phone_one.attr({ 'href': 'tel:' + form['phone-one'].replace(/\D/g,'') });
+                    phone_two.attr({ 'href': 'tel:' + form['phone-two'].replace(/\D/g,'') });
+                    email.attr({ 'href': 'mailto:' + form['email']});
+                    address.attr({ 'href': 'https://www.google.com/maps/search/?api=1&query=' + form['address'] });
+                    website.attr({ 'href': 'https://' + form['website'] });
+                }
             }
 
             // Add event listener

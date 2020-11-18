@@ -16,6 +16,7 @@
     </head>
     <body>
         <div id="copy">
+            <!--[if mso]><style type="text/css">body, table, td {font-family: Calibri !important;}</style><![endif]-->
             <style>
                 /* Normalize CSS */
                 #signature img { border: 0 none; height: auto; line-height: 100%; outline: none; text-decoration: none; }
@@ -23,19 +24,19 @@
                 #signature a img { border: 0 none; }
                 #signature td { border-collapse: collapse; }
             </style>
-            <table id="signature" style="font-family: Calibri, sans-serif, serif; border-collapse: collapse;">
+            <table id="signature" style="border-collapse: collapse;">
                 <tr>
-                    <td style="padding: 0px 24px 12px 0px; margin: 0px; display: inline-block;">
+                    <td style="display: inline-block; padding: 0px 24px 12px 0px; margin: 0px;">
                         <img src="https://six-degrees.com/img/e-signatures/6d-logo.png" alt="Six Degrees Logo" style="background-color: #ea0000; color: #ffffff; height: 120px; width: 120px;" />
                     </td>
-                    <td style="padding: 0px 0px 12px 0px; margin: 0px; display: inline-block;">
+                    <td style="display: inline-block; padding: 6px 0px 12px 0px; margin: 0px; vertical-align: top;">
                         <table style="border-collapse: collapse;">
-                            <tr><td id="name" height="16px" style="color: #333438; font-size: 16px; font-weight: bold; line-height: 16px; margin: 0; white-space: nowrap;"></td></tr>
-                            <tr><td id="title" height="13px" style="color: #333438; font-size: 13px; font-weight: bold; line-height: 13px; padding-bottom: 12px; white-space: nowrap;"></td></tr>
-                            <tr><td height="14px" style="color: #606164; font-size: 13px; line-height: 14px; white-space: nowrap;" id="phone"></td></tr>
-                            <tr><td height="14px" style="color: #606164; font-size: 13px; line-height: 14px; white-space: nowrap;"><a id="email" style="color: #6C7272; text-decoration-color: transparent;"></a></td></tr>
-                            <tr><td height="14px" style="color: #606164; font-size: 13px; line-height: 14px; white-space: nowrap;"><a id="address" style="color: #6C7272; text-decoration-color: transparent;">8040 E. Gelding Drive, Scottsdale, AZ 85260</a></td></tr>
-                            <tr><td height="14px" style="color: #606164; font-size: 13px; line-height: 14px; white-space: nowrap;"><a id="website" style="color: #6C7272; text-decoration-color: transparent;">www.six-degrees.com</a></td></tr>
+                            <tr><td id="name" height="16px" style="color: #333438; font-family: Calibri !important; font-size: 16px; font-weight: bold; line-height: 16px; padding: 0px; margin: 0px; white-space: nowrap;"></td></tr>
+                            <tr><td id="title" height="14px" style="color: #333438; font-family: Calibri !important; font-size: 13px; font-weight: bold; line-height: 14px; padding: 0px 0px 12px; white-space: nowrap;"></td></tr>
+                            <tr><td height="16px" style="color: #606164; font-family: Calibri !important; font-size: 13px; line-height: 16px; padding: 0px; white-space: nowrap;" id="phone"></td></tr>
+                            <tr><td height="16px" style="color: #606164; font-family: Calibri !important; font-size: 13px; line-height: 16px; padding: 0px; white-space: nowrap;"><a id="email" style="color: #6C7272; text-decoration: none !important;"></a></td></tr>
+                            <tr><td height="16px" style="color: #606164; font-family: Calibri !important; font-size: 13px; line-height: 16px; padding: 0px; white-space: nowrap;"><a id="address" style="color: #6C7272; text-decoration: none !important;">8040 E. Gelding Drive, Scottsdale, AZ 85260</a></td></tr>
+                            <tr><td height="16px" style="color: #606164; font-family: Calibri !important; font-size: 13px; line-height: 16px; padding: 0px; white-space: nowrap;"><a id="website" style="color: #6C7272; text-decoration: none !important;">www.six-degrees.com</a></td></tr>
                         </table>
                     </td>
                 </tr>
@@ -89,9 +90,9 @@
                 var email = $('#email');
                 var address = $('#address');
                 var website = $('#website');
-                var phone_template = '<a style="color: #6C7272; text-decoration-color: transparent;">text</a>';
-                var phone_one = $(phone_template);
-                var phone_two = $(phone_template);
+                var a_template = '<a style="color: #6C7272; text-decoration: none !important;">text</a>';
+                var phone_one = $(a_template);
+                var phone_two = $(a_template);
                 name.text(form['name']);
                 title.text(form['title']);
                 email.text(form['email']);
